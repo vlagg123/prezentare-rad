@@ -87,8 +87,10 @@
     <!-- ═══════════════════════════════════════
          NAVBAR
     ═══════════════════════════════════════════ -->
-    <nav id="navbar" class="fixed top-0 w-full z-50 bg-[#081325]/60 backdrop-blur-md flex items-center justify-between px-6 md:px-8 py-4 max-w-7xl mx-auto left-0 right-0">
-        <a href="#" class="text-xl font-black tracking-tighter text-primary">RAD</a>
+    <nav id="navbar" class="fixed top-0 w-full z-50 bg-[#081325]/60 backdrop-blur-md flex items-center justify-between px-10 md:px-24 py-4">
+        <a href="#">
+            <img src="public/logo.jpg" alt="Registrul Auto Digital" class="h-12 w-auto"/>
+        </a>
 
         <!-- Desktop links -->
         <div class="hidden md:flex gap-8">
@@ -165,8 +167,8 @@
             <div class="reveal reveal-delay-2 relative">
                 <div class="absolute -inset-4 bg-gradient-to-tr from-primary-container/30 to-transparent rounded-3xl blur-2xl -z-10"></div>
                 <img
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFVteuA5fUOzXv7PJkSH2nAntFVf10TRqFgkuQjjOT3Z9MYJEOnn7KuS-HhMjMKt2z0V9Sy058yHVlp-QZAwXHkmnciaPB7yhqF_EUsVHzU0b23ISDNgteDrUx29ysnhqM4iK-eVPm0461ODMR4yHWywQY906ujBSZ0mIiaGDztUPIH-AT9-6KMjKb1zohxza44QA_ECeexeQ8zIzpcDEuboj1bEn-sIPvsyed8VI25jTY6T_yxup2x2jdlhAfyWv1eqcHUDsqRn0"
-                    alt="Dashboard RAD – Fleet Management"
+                    src="https://images.unsplash.com/photo-1619026457031-dafc4b5300a5?w=1280&q=85&fit=crop&crop=center"
+                    alt="Flotă de vehicule în parcare – RAD"
                     class="img-card rounded-3xl shadow-[0_20px_40px_rgba(4,14,32,0.6)] border border-outline-variant/20 w-full object-cover h-[460px]"
                 />
             </div>
@@ -338,8 +340,8 @@
             <div class="order-2 lg:order-1 relative reveal">
                 <div class="absolute -inset-4 bg-gradient-to-br from-surface-container-high/60 to-transparent rounded-3xl blur-xl -z-10"></div>
                 <img
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1gS1NCLMiKycpWZoEEpIlSvZDvl78Dqs8kQWXjYT2f3m3fPKz4PGYLmh4fDJYoz0Ueg79Jytx_uqmIVUU4MOSmGHlxTO8XR3IPFsk3AAisxBAiW0duyRhvWzZt1hji-sOOPGjHmBBc5OKI9nza-IASnShH6mPgpDkPnv-7W2CT1ACeWFG7CbBLBcl-hKzqL1dTLwyOI5NirK8aqL5wBKGNGNwfJOWzZjWcVMRO-WakwGL-7_L7mIH2ew-FFzTPf6grka1lajsj_Q"
-                    alt="Rapoarte oficiale PDF generate de RAD"
+                    src="https://images.unsplash.com/photo-1569235186275-626cb53b83ce?w=1280&q=85&fit=crop&crop=center"
+                    alt="Dosare și rapoarte oficiale – RAD"
                     class="img-card rounded-3xl shadow-[0_20px_40px_rgba(4,14,32,0.5)] border border-outline-variant/20 w-full object-cover h-[560px]"
                 />
             </div>
@@ -522,7 +524,7 @@
 
                         <!-- Nume -->
                         <div class="flex flex-col gap-2">
-                            <label for="contact-name" class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Nume și prenume</label>
+                            <label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Nume și prenume</label>
                             <input
                                 id="contact-name" name="name" type="text"
                                 autocomplete="name" required
@@ -532,7 +534,7 @@
 
                         <!-- Instituție -->
                         <div class="flex flex-col gap-2">
-                            <label for="contact-institution" class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Instituție</label>
+                            <label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Instituție</label>
                             <input
                                 id="contact-institution" name="institution" type="text"
                                 autocomplete="organization" required
@@ -542,7 +544,7 @@
 
                         <!-- Email -->
                         <div class="flex flex-col gap-2">
-                            <label for="contact-email" class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Email</label>
+                            <label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Email</label>
                             <input
                                 id="contact-email" name="email" type="email"
                                 autocomplete="email" required
@@ -552,7 +554,7 @@
 
                         <!-- Telefon -->
                         <div class="flex flex-col gap-2">
-                            <label for="contact-phone" class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Telefon</label>
+                            <label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Telefon</label>
                             <input
                                 id="contact-phone" name="phone" type="tel"
                                 autocomplete="tel" required
@@ -562,7 +564,7 @@
 
                         <!-- Nr. vehicule -->
                         <div class="flex flex-col gap-2 md:col-span-2">
-                            <label for="contact-vehicles" class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Număr vehicule în flotă</label>
+                            <label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Număr vehicule în flotă</label>
                             <div class="relative">
                                 <select
                                     id="contact-vehicles" name="vehicles" required
@@ -580,7 +582,7 @@
 
                         <!-- Mesaj -->
                         <div class="flex flex-col gap-2 md:col-span-2">
-                            <label for="contact-message" class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Mesaj</label>
+                            <label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Mesaj</label>
                             <textarea
                                 id="contact-message" name="message" rows="4" required
                                 placeholder="Spune-ne mai multe despre nevoile instituției tale..."
@@ -615,9 +617,9 @@
     ═══════════════════════════════════════════ -->
     <footer class="py-12 bg-surface-container-low border-t border-outline-variant/10">
         <div class="max-w-7xl mx-auto px-6 md:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex flex-col items-center md:items-start">
-                <div class="text-lg font-black text-primary mb-1">RAD</div>
-                <div class="text-xs uppercase tracking-widest text-on-surface-variant">© 2026 — Registrul Auto Digital</div>
+            <div class="flex flex-col items-center md:items-start gap-2">
+                <img src="public/logo.jpg" alt="Registrul Auto Digital" class="h-14 w-auto"/>
+                <div class="text-xs tracking-widest text-on-surface-variant">© 2026 — RAD by SoftXpert</div>
             </div>
             <div class="flex flex-wrap justify-center gap-6">
                 <a href="#" class="text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors opacity-70 hover:opacity-100">Politică de confidențialitate</a>
