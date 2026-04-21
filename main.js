@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             closeMobileMenu();
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             setActiveLink(target.id);
+            history.replaceState(null, '', window.location.pathname + window.location.search);
         });
     });
 
@@ -119,11 +120,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (url.searchParams.get('sent') === '1' && feedback) {
             feedback.className = 'mt-6 p-4 rounded-xl text-sm font-medium success';
             feedback.textContent = '✓ Solicitarea ta a fost trimisă! Te contactăm în maxim 24 de ore.';
+            const contactSection = document.getElementById('contact');
+            contactSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
             // Remove the flag so refresh doesn't keep showing the message
             url.searchParams.delete('sent');
             const qs = url.searchParams.toString();
-            history.replaceState(null, '', url.pathname + (qs ? `?${qs}` : '') + url.hash);
+            history.replaceState(null, '', url.pathname + (qs ? `?${qs}` : ''));
         }
     } catch (_) {
         // ignore
