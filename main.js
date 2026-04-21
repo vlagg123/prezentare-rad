@@ -25,45 +25,45 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', onScroll, { passive: true });
 
 
-// ── Active nav link on scroll (deterministic) ──────────
-const sections = Array.from(document.querySelectorAll('section[id]'));
-const navLinks = Array.from(document.querySelectorAll('.nav-link'));
+    // ── Active nav link on scroll (deterministic) ──────────
+    const sections = Array.from(document.querySelectorAll('section[id]'));
+    const navLinks = Array.from(document.querySelectorAll('.nav-link'));
 
-const setActiveLink = (id) => {
-    navLinks.forEach(link => {
-        const matches = link.getAttribute('href') === `#${id}`;
-        link.classList.toggle('active', matches);
-    });
-};
+    const setActiveLink = (id) => {
+        navLinks.forEach(link => {
+            const matches = link.getAttribute('href') === `#${id}`;
+            link.classList.toggle('active', matches);
+        });
+    };
 
-// Alege secțiunea care trece printr-un “probe line” imediat sub navbar
-const getActiveSectionId = () => {
-    const navbarH = navbar?.offsetHeight ?? 0;
-    const probeY = navbarH + 24; // 24px sub navbar
+    // Alege secțiunea care trece printr-un “probe line” imediat sub navbar
+    const getActiveSectionId = () => {
+        const navbarH = navbar?.offsetHeight ?? 0;
+        const probeY = navbarH + 24; // 24px sub navbar
 
-    for (const s of sections) {
-        const rect = s.getBoundingClientRect();
-        if (rect.top <= probeY && rect.bottom > probeY) {
-            return s.id;
+        for (const s of sections) {
+            const rect = s.getBoundingClientRect();
+            if (rect.top <= probeY && rect.bottom > probeY) {
+                return s.id;
+            }
         }
-    }
 
-    return sections[0]?.id;
-};
+        return sections[0]?.id;
+    };
 
-let ticking = false;
-const onActiveScroll = () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-        const id = getActiveSectionId();
-        if (id) setActiveLink(id);
-        ticking = false;
-    });
-};
+    let ticking = false;
+    const onActiveScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+            const id = getActiveSectionId();
+            if (id) setActiveLink(id);
+            ticking = false;
+        });
+    };
 
-window.addEventListener('scroll', onActiveScroll, { passive: true });
-onActiveScroll(); // setare inițială
+    window.addEventListener('scroll', onActiveScroll, { passive: true });
+    onActiveScroll(); // setare inițială
 
     // ── Smooth scroll for anchor links ────────
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -81,8 +81,8 @@ onActiveScroll(); // setare inițială
 
 
     // ── Mobile menu ────────────────────────────
-    const menuBtn   = document.getElementById('menu-btn');
-    const closeBtn  = document.getElementById('close-menu-btn');
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
     function openMobileMenu() {
@@ -114,10 +114,16 @@ onActiveScroll(); // setare inițială
 
     // Show success message after FormSubmit redirect (?sent=1)
     try {
-        const params = new URLSearchParams(window.location.search);
-        if (params.get('sent') === '1' && feedback) {
+        const url = new URL(window.location.href);
+
+        if (url.searchParams.get('sent') === '1' && feedback) {
             feedback.className = 'mt-6 p-4 rounded-xl text-sm font-medium success';
             feedback.textContent = '✓ Solicitarea ta a fost trimisă! Te contactăm în maxim 24 de ore.';
+
+            // Remove the flag so refresh doesn't keep showing the message
+            url.searchParams.delete('sent');
+            const qs = url.searchParams.toString();
+            history.replaceState(null, '', url.pathname + (qs ? `?${qs}` : '') + url.hash);
         }
     } catch (_) {
         // ignore

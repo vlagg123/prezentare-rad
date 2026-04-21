@@ -2,9 +2,15 @@
    RAD – Registrul Auto Digital  |  style.css
    ============================================= */
 
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
-html { scroll-behavior: smooth; }
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     font-family: 'Manrope', sans-serif;
@@ -12,10 +18,22 @@ body {
 }
 
 /* ── Scrollbar ──────────────────────────────── */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #081325; }
-::-webkit-scrollbar-thumb { background: #464555; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #4b41e1; }
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #081325;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #464555;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4b41e1;
+}
 
 /* ── Glass panel ────────────────────────────── */
 .glass-panel {
@@ -29,16 +47,21 @@ body {
     background: linear-gradient(135deg, #4b41e1, #645efb);
     transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
+
 .btn-gradient:hover {
     box-shadow: 0 0 22px 6px rgba(195, 192, 255, 0.35);
     transform: translateY(-2px);
 }
-.btn-gradient:active { transform: translateY(0); }
+
+.btn-gradient:active {
+    transform: translateY(0);
+}
 
 /* ── Navbar scrolled state ──────────────────── */
 #navbar {
     transition: background 0.3s ease, box-shadow 0.3s ease;
 }
+
 #navbar.scrolled {
     background: rgba(8, 19, 37, 0.92) !important;
     box-shadow: 0 2px 32px rgba(4, 14, 32, 0.6);
@@ -49,6 +72,7 @@ body {
     position: relative;
     transition: color 0.2s ease;
 }
+
 .nav-link::after {
     content: '';
     position: absolute;
@@ -59,9 +83,15 @@ body {
     background: #4b41e1;
     transition: width 0.25s ease;
 }
+
 .nav-link:hover::after,
-.nav-link.active::after { width: 100%; }
-.nav-link.active { color: #4b41e1; }
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link.active {
+    color: #4b41e1;
+}
 
 /* ── Mobile menu ────────────────────────────── */
 #mobile-menu {
@@ -77,14 +107,21 @@ body {
     justify-content: center;
     gap: 2.5rem;
 }
-#mobile-menu.open { display: flex; }
+
+#mobile-menu.open {
+    display: flex;
+}
+
 #mobile-menu a {
     font-size: 1.5rem;
     font-weight: 700;
     color: #c7c4d8;
     transition: color 0.2s ease;
 }
-#mobile-menu a:hover { color: #c3c0ff; }
+
+#mobile-menu a:hover {
+    color: #c3c0ff;
+}
 
 /* ── Scroll reveal ──────────────────────────── */
 .reveal {
@@ -92,32 +129,68 @@ body {
     transform: translateY(28px);
     transition: opacity 0.32s ease, transform 0.32s ease;
 }
+
 .reveal.visible {
     opacity: 1;
     transform: translateY(0);
 }
-.reveal-delay-1 { transition-delay: 0.05s; }
-.reveal-delay-2 { transition-delay: 0.1s; }
-.reveal-delay-3 { transition-delay: 0.15s; }
-.reveal-delay-4 { transition-delay: 0.2s; }
-.reveal-delay-5 { transition-delay: 0.25s; }
+
+.reveal-delay-1 {
+    transition-delay: 0.05s;
+}
+
+.reveal-delay-2 {
+    transition-delay: 0.1s;
+}
+
+.reveal-delay-3 {
+    transition-delay: 0.15s;
+}
+
+.reveal-delay-4 {
+    transition-delay: 0.2s;
+}
+
+.reveal-delay-5 {
+    transition-delay: 0.25s;
+}
 
 /* ── Feature cards ──────────────────────────── */
 .feature-card {
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
-.feature-card:hover { transform: translateY(-6px); }
+
+.feature-card:hover {
+    transform: translateY(-6px);
+}
 
 /* ── FAQ accordion ──────────────────────────── */
-details summary::-webkit-details-marker { display: none; }
-details .chevron { transition: transform 0.3s ease; }
-details[open] .chevron { transform: rotate(180deg); }
-details > div {
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+details .chevron {
+    transition: transform 0.3s ease;
+}
+
+details[open] .chevron {
+    transform: rotate(180deg);
+}
+
+details>div {
     animation: slideDown 0.3s ease;
 }
+
 @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-8px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ── Step connector line ────────────────────── */
@@ -127,7 +200,7 @@ details > div {
     left: 58%;
     right: -58%;
     height: 1px;
-    background: linear-gradient(90deg, rgba(70,69,85,0.5) 0%, transparent 100%);
+    background: linear-gradient(90deg, rgba(70, 69, 85, 0.5) 0%, transparent 100%);
     pointer-events: none;
 }
 
@@ -135,7 +208,10 @@ details > div {
 .stat-item {
     transition: transform 0.3s ease;
 }
-.stat-item:hover { transform: translateY(-3px); }
+
+.stat-item:hover {
+    transform: translateY(-3px);
+}
 
 /* ── Hero badge ─────────────────────────────── */
 .hero-badge {
@@ -155,15 +231,18 @@ details > div {
 #contact-form textarea {
     color: #d8e2fc;
 }
+
 #contact-form input::placeholder,
 #contact-form textarea::placeholder {
     color: #918fa1;
 }
+
 #contact-form input:focus,
 #contact-form select:focus,
 #contact-form textarea:focus {
     background-color: #202a3d;
 }
+
 #contact-form select option {
     background-color: #152032;
     color: #d8e2fc;
@@ -175,6 +254,7 @@ details > div {
     border: 1px solid rgba(75, 65, 225, 0.3);
     color: #c3c0ff;
 }
+
 #form-feedback.error {
     display: block;
     background: rgba(147, 0, 10, 0.15);
@@ -195,7 +275,8 @@ details > div {
 /* ── HERO image: pro purple glow hover (only this image) ─── */
 .hero-media {
     position: relative;
-    isolation: isolate; /* prevents blend/stacking artifacts */
+    isolation: isolate;
+    /* prevents blend/stacking artifacts */
 }
 
 /* Two glow layers behind the frame */
@@ -241,7 +322,8 @@ details > div {
     height: 460px;
     border-radius: 32px;
     overflow: hidden;
-    background: #081325; /* same as body background */
+    background: #081325;
+    /* same as body background */
     outline: 1px solid rgba(70, 69, 85, 0.18);
 
     box-shadow: 0 14px 34px rgba(4, 14, 32, 0.48);
@@ -268,11 +350,13 @@ details > div {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
     .hero-media::before,
     .hero-media::after,
     .hero-media__frame {
         transition: none;
     }
+
     .hero-media:hover .hero-media__frame {
         transform: none;
     }
