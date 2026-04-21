@@ -108,33 +108,70 @@ onActiveScroll(); // setare inițială
     });
 
 
-    // ── Contact form submit (placeholder) ─────
+    // ── Contact form submit (FormSubmit) ─────
     const contactForm = document.getElementById('contact-form');
-    const feedback    = document.getElementById('form-feedback');
+    const feedback = document.getElementById('form-feedback');
+
+    // Show success message after FormSubmit redirect (?sent=1)
+    try {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('sent') === '1' && feedback) {
+            feedback.className = 'mt-6 p-4 rounded-xl text-sm font-medium success';
+            feedback.textContent = '✓ Solicitarea ta a fost trimisă! Te contactăm în maxim 24 de ore.';
+        }
+    } catch (_) {
+        // ignore
+    }
 
     contactForm?.addEventListener('submit', (e) => {
-        e.preventDefault();
-
+        // Client-side validation (keeps your nice UI), then allow normal POST to FormSubmit
         const required = contactForm.querySelectorAll('[required]');
         let valid = true;
-        required.forEach(field => {
+
+        required.forEach((field) => {
             field.classList.remove('border-error/60');
-            if (!field.value.trim()) {
+
+            // For selects, value can be "" when placeholder option is selected
+            const value = (field.value ?? '').toString().trim();
+            if (!value) {
                 field.classList.add('border-error/60');
                 valid = false;
             }
         });
 
+        // Basic email format check for _replyto
+        const emailField = contactForm.querySelector('input[name="_replyto"]');
+        if (emailField) {
+            const email = emailField.value.trim();
+            const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            if (!ok) {
+                emailField.classList.add('border-error/60');
+                valid = false;
+            }
+        }
+
         if (!valid) {
-            feedback.className = 'mt-6 p-4 rounded-xl text-sm font-medium error';
-            feedback.textContent = 'Te rugăm să completezi toate câmpurile obligatorii.';
+            e.preventDefault();
+            if (feedback) {
+                feedback.className = 'mt-6 p-4 rounded-xl text-sm font-medium error';
+                feedback.textContent = 'Te rugăm să completezi corect toate câmpurile obligatorii.';
+            }
             return;
         }
 
-        // TODO: conectează la backend / serviciu email
-        feedback.className = 'mt-6 p-4 rounded-xl text-sm font-medium success';
-        feedback.textContent = '✓ Solicitarea ta a fost trimisă! Te contactăm în maxim 24 de ore.';
-        contactForm.reset();
+        // Optional: show sending state
+        if (feedback) {
+            feedback.className = 'mt-6 p-4 rounded-xl text-sm font-medium success';
+            feedback.textContent = 'Se trimite...';
+        }
+
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.85';
+        }
+
+        // Do NOT preventDefault — let the browser submit to FormSubmit
     });
 
 });

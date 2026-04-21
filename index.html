@@ -521,7 +521,14 @@
 
             <!-- Form card -->
             <div class="reveal reveal-delay-1 bg-surface-container rounded-3xl p-8 md:p-12 shadow-[0_20px_60px_rgba(4,14,32,0.5)] border border-outline-variant/10 max-w-3xl mx-auto">
-                <form id="contact-form" novalidate>
+                <form id="contact-form" action="https://formsubmit.co/vladgabriel.office@gmail.com" method="POST">
+                    <!-- FormSubmit settings -->
+                    <input type="hidden" name="_subject" value="Cerere demo RAD (site)" />
+                    <input type="hidden" name="_template" value="table" />
+                    <input type="hidden" name="_captcha" value="true" />
+                    <input type="hidden" name="_next" value="https://vlagg123.github.io/prezentare-rad/?sent=1#contact" />
+                    <!-- Honeypot anti-spam (keep hidden) -->
+                    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
                         <!-- Nume -->
@@ -548,7 +555,7 @@
                         <div class="flex flex-col gap-2">
                             <label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Email</label>
                             <input
-                                id="contact-email" name="email" type="email"
+                                id="contact-email" name="_replyto" type="email"
                                 autocomplete="email" required
                                 class="bg-surface-container-high rounded-xl px-4 py-3.5 text-on-surface text-sm outline-none border border-transparent focus:border-primary-container/60 transition-colors"
                             />
