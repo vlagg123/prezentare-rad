@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html class="dark" lang="ro">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>RAD – Registrul Auto Digital</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="style.css" rel="stylesheet"/>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "outline":                    "#918fa1",
+                        "inverse-on-surface":         "#263144",
+                        "background":                 "#081325",
+                        "on-surface-variant":         "#c7c4d8",
+                        "surface-dim":                "#081325",
+                        "on-tertiary-fixed":          "#360f00",
+                        "surface-tint":               "#c3c0ff",
+                        "on-primary":                 "#1d00a5",
+                        "surface":                    "#081325",
+                        "primary":                    "#c3c0ff",
+                        "on-surface":                 "#d8e2fc",
+                        "on-secondary-fixed-variant": "#3223cc",
+                        "tertiary-container":         "#a13b00",
+                        "on-tertiary":                "#591d00",
+                        "surface-container-high":     "#202a3d",
+                        "tertiary-fixed":             "#ffdbcd",
+                        "outline-variant":            "#464555",
+                        "primary-container":          "#4b41e1",
+                        "surface-container-lowest":   "#040e20",
+                        "surface-container-low":      "#111c2e",
+                        "on-secondary-container":     "#b3b1ff",
+                        "on-primary-fixed-variant":   "#3322cc",
+                        "secondary-fixed":            "#e2dfff",
+                        "secondary-container":        "#3527ce",
+                        "inverse-primary":            "#4d44e3",
+                        "on-primary-fixed":           "#0f0069",
+                        "on-tertiary-fixed-variant":  "#7e2c00",
+                        "on-secondary-fixed":         "#0e006a",
+                        "surface-variant":            "#2b3548",
+                        "tertiary":                   "#ffb597",
+                        "on-error":                   "#690005",
+                        "inverse-surface":            "#d8e2fc",
+                        "on-primary-container":       "#d3d1ff",
+                        "secondary-fixed-dim":        "#c3c0ff",
+                        "surface-container":          "#152032",
+                        "tertiary-fixed-dim":         "#ffb597",
+                        "on-background":              "#d8e2fc",
+                        "error-container":            "#93000a",
+                        "on-secondary":               "#1c00a6",
+                        "on-error-container":         "#ffdad6",
+                        "on-tertiary-container":      "#ffc9b4",
+                        "primary-fixed":              "#e2dfff",
+                        "secondary":                  "#c3c0ff",
+                        "surface-bright":             "#2f394d",
+                        "error":                      "#ffb4ab",
+                        "surface-container-highest":  "#2b3548",
+                        "primary-fixed-dim":          "#c3c0ff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg":   "0.5rem",
+                        "xl":   "0.75rem",
+                        "2xl":  "1.5rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body":     ["Manrope"],
+                        "label":    ["Manrope"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-background text-on-surface font-body antialiased">
+
+    <!-- ═══════════════════════════════════════
+         NAVBAR
+    ═══════════════════════════════════════════ -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 bg-[#081325]/60 backdrop-blur-md flex items-center justify-between px-6 md:px-8 py-4 max-w-7xl mx-auto left-0 right-0">
+        <a href="#" class="text-xl font-black tracking-tighter text-primary">RAD</a>
+
+        <!-- Desktop links -->
+        <div class="hidden md:flex gap-8">
+            <a href="#features"     class="nav-link text-on-surface-variant text-sm font-medium tracking-wide">Funcționalități</a>
+            <a href="#how-it-works" class="nav-link text-on-surface-variant text-sm font-medium tracking-wide">Cum funcționează</a>
+            <a href="#reports"      class="nav-link text-on-surface-variant text-sm font-medium tracking-wide">Rapoarte</a>
+            <a href="#testimonials" class="nav-link text-on-surface-variant text-sm font-medium tracking-wide">Testimoniale</a>
+            <a href="#faq"          class="nav-link text-on-surface-variant text-sm font-medium tracking-wide">FAQ</a>
+        </div>
+
+        <!-- Desktop CTA -->
+        <div class="hidden md:flex items-center gap-4">
+            <a href="#contact" class="text-on-surface-variant hover:text-primary transition-colors text-sm font-semibold py-2 px-4 rounded-full">Contact</a>
+            <a href="#contact" class="btn-gradient text-white py-2 px-6 rounded-full text-sm font-bold">Solicită demo</a>
+        </div>
+
+        <!-- Hamburger (mobile) -->
+        <button id="menu-btn" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Deschide meniul">
+            <span class="w-6 h-0.5 bg-on-surface block"></span>
+            <span class="w-6 h-0.5 bg-on-surface block"></span>
+            <span class="w-5 h-0.5 bg-on-surface block"></span>
+        </button>
+    </nav>
+
+    <!-- Mobile menu overlay -->
+    <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Meniu navigare">
+        <button id="close-menu-btn" class="absolute top-6 right-6 text-on-surface-variant hover:text-primary" aria-label="Închide meniul">
+            <span class="material-symbols-outlined text-3xl">close</span>
+        </button>
+        <a href="#features">Funcționalități</a>
+        <a href="#how-it-works">Cum funcționează</a>
+        <a href="#reports">Rapoarte</a>
+        <a href="#testimonials">Testimoniale</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="btn-gradient text-white py-3 px-10 rounded-full font-bold mt-4">Solicită demo</a>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════
+         HERO
+    ═══════════════════════════════════════════ -->
+    <section id="hero" class="pt-40 pb-20 px-6 md:px-8 relative max-w-7xl mx-auto overflow-hidden">
+        <!-- Ambient glow -->
+        <div class="glow-blob absolute top-10 right-0 w-[500px] h-[500px] bg-primary-container/20 rounded-full blur-[120px]"></div>
+        <div class="glow-blob absolute bottom-0 left-0 w-[300px] h-[300px] bg-primary-container/10 rounded-full blur-[100px]"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <!-- Left -->
+            <div class="space-y-8">
+                <div class="hero-badge reveal inline-flex items-center gap-2 px-4 py-2 rounded-full text-primary text-xs font-bold uppercase tracking-widest">
+                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    Platformă Instituțională
+                </div>
+
+                <h1 class="reveal reveal-delay-1 font-headline text-5xl lg:text-6xl font-extrabold text-on-surface leading-tight" style="letter-spacing:-0.04em;">
+                    Gestionează flota auto a instituției tale, simplu și digital.
+                </h1>
+
+                <p class="reveal reveal-delay-2 text-lg text-on-surface-variant font-body max-w-xl leading-relaxed">
+                    Platforma completă pentru evidența vehiculelor, jurnalelor de parcurs și generarea rapoartelor oficiale. Construită pentru siguranță și conformitate.
+                </p>
+
+                <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 pt-4">
+                    <a href="#contact" class="btn-gradient text-white py-4 px-8 rounded-2xl text-base font-bold text-center">
+                        Solicită demonstrație
+                    </a>
+                    <a href="#features" class="bg-surface-container-highest text-on-surface py-4 px-8 rounded-2xl text-base font-semibold text-center hover:bg-surface-container transition-colors">
+                        Descoperă platforma
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: dashboard mockup -->
+            <div class="reveal reveal-delay-2 relative">
+                <div class="absolute -inset-4 bg-gradient-to-tr from-primary-container/30 to-transparent rounded-3xl blur-2xl -z-10"></div>
+                <img
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFVteuA5fUOzXv7PJkSH2nAntFVf10TRqFgkuQjjOT3Z9MYJEOnn7KuS-HhMjMKt2z0V9Sy058yHVlp-QZAwXHkmnciaPB7yhqF_EUsVHzU0b23ISDNgteDrUx29ysnhqM4iK-eVPm0461ODMR4yHWywQY906ujBSZ0mIiaGDztUPIH-AT9-6KMjKb1zohxza44QA_ECeexeQ8zIzpcDEuboj1bEn-sIPvsyed8VI25jTY6T_yxup2x2jdlhAfyWv1eqcHUDsqRn0"
+                    alt="Dashboard RAD – Fleet Management"
+                    class="img-card rounded-3xl shadow-[0_20px_40px_rgba(4,14,32,0.6)] border border-outline-variant/20 w-full object-cover h-[460px]"
+                />
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         SOCIAL PROOF BAR
+    ═══════════════════════════════════════════ -->
+    <section class="py-12 bg-surface-container-low border-y border-outline-variant/10">
+        <div class="max-w-7xl mx-auto px-6 md:px-8 flex flex-col md:flex-row justify-between items-center gap-10 text-center md:text-left">
+
+            <div class="stat-item reveal flex items-center gap-4">
+                <span class="material-symbols-outlined text-primary text-4xl">assured_workload</span>
+                <div>
+                    <div class="text-2xl font-extrabold text-on-surface">150+</div>
+                    <div class="text-xs text-on-surface-variant uppercase tracking-widest font-label">Instituții Publice</div>
+                </div>
+            </div>
+
+            <div class="stat-item reveal reveal-delay-1 flex items-center gap-4">
+                <span class="material-symbols-outlined text-primary text-4xl">gavel</span>
+                <div>
+                    <div class="text-2xl font-extrabold text-on-surface">100%</div>
+                    <div class="text-xs text-on-surface-variant uppercase tracking-widest font-label">Conformitate Legală</div>
+                </div>
+            </div>
+
+            <div class="stat-item reveal reveal-delay-2 flex items-center gap-4">
+                <span class="material-symbols-outlined text-primary text-4xl">bolt</span>
+                <div>
+                    <div class="text-2xl font-extrabold text-on-surface">&lt; 1 Min</div>
+                    <div class="text-xs text-on-surface-variant uppercase tracking-widest font-label">Generare Rapoarte</div>
+                </div>
+            </div>
+
+            <div class="stat-item reveal reveal-delay-3 flex items-center gap-4">
+                <span class="material-symbols-outlined text-primary text-4xl">lock</span>
+                <div>
+                    <div class="text-2xl font-extrabold text-on-surface">AES-256</div>
+                    <div class="text-xs text-on-surface-variant uppercase tracking-widest font-label">Criptare Date</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         FEATURES
+    ═══════════════════════════════════════════ -->
+    <section id="features" class="py-32 px-6 md:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-20 max-w-3xl mx-auto reveal">
+            <p class="text-xs font-bold uppercase tracking-widest text-primary mb-4">Funcționalități</p>
+            <h2 class="text-4xl font-extrabold font-headline mb-6">Tot ce ai nevoie într-o singură platformă</h2>
+            <p class="text-on-surface-variant text-lg">Un ecosistem complet pentru managementul flotei, de la evidența carburantului până la revizii și audit.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <div class="feature-card reveal bg-surface-container p-8 rounded-2xl relative overflow-hidden group">
+                <div class="w-12 h-12 bg-surface-container-high rounded-xl flex items-center justify-center mb-6 text-primary">
+                    <span class="material-symbols-outlined">directions_car</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-on-surface">Gestiune flotă</h3>
+                <p class="text-on-surface-variant text-sm leading-relaxed">Centralizează toate detaliile vehiculelor: documente, asigurări, inspecții tehnice și alocări.</p>
+                <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full transition-transform group-hover:scale-125"></div>
+            </div>
+
+            <div class="feature-card reveal reveal-delay-1 bg-surface-container p-8 rounded-2xl relative overflow-hidden group">
+                <div class="w-12 h-12 bg-surface-container-high rounded-xl flex items-center justify-center mb-6 text-primary">
+                    <span class="material-symbols-outlined">route</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-on-surface">Jurnal curse</h3>
+                <p class="text-on-surface-variant text-sm leading-relaxed">Înregistrare detaliată a deplasărilor cu distanțe, rute, scop și șoferi asociați.</p>
+                <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full transition-transform group-hover:scale-125"></div>
+            </div>
+
+            <div class="feature-card reveal reveal-delay-2 bg-surface-container p-8 rounded-2xl relative overflow-hidden group">
+                <div class="w-12 h-12 bg-surface-container-high rounded-xl flex items-center justify-center mb-6 text-primary">
+                    <span class="material-symbols-outlined">local_gas_station</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-on-surface">Evidență carburant</h3>
+                <p class="text-on-surface-variant text-sm leading-relaxed">Monitorizează consumul, costurile și alimentările pentru optimizarea bugetului de transport.</p>
+                <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full transition-transform group-hover:scale-125"></div>
+            </div>
+
+            <div class="feature-card reveal reveal-delay-1 bg-surface-container p-8 rounded-2xl relative overflow-hidden group">
+                <div class="w-12 h-12 bg-surface-container-high rounded-xl flex items-center justify-center mb-6 text-primary">
+                    <span class="material-symbols-outlined">build</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-on-surface">Revizii și reparații</h3>
+                <p class="text-on-surface-variant text-sm leading-relaxed">Alerte automate pentru mentenanță și un istoric clar al tuturor intervențiilor tehnice.</p>
+                <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full transition-transform group-hover:scale-125"></div>
+            </div>
+
+            <div class="feature-card reveal reveal-delay-2 bg-surface-container p-8 rounded-2xl relative overflow-hidden group">
+                <div class="w-12 h-12 bg-surface-container-high rounded-xl flex items-center justify-center mb-6 text-primary">
+                    <span class="material-symbols-outlined">description</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-on-surface">12 rapoarte oficiale PDF</h3>
+                <p class="text-on-surface-variant text-sm leading-relaxed">Generare instantanee a documentelor necesare pentru audit și control intern.</p>
+                <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full transition-transform group-hover:scale-125"></div>
+            </div>
+
+            <div class="feature-card reveal reveal-delay-3 bg-surface-container p-8 rounded-2xl relative overflow-hidden group">
+                <div class="w-12 h-12 bg-surface-container-high rounded-xl flex items-center justify-center mb-6 text-primary">
+                    <span class="material-symbols-outlined">manage_accounts</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-on-surface">Sistem multi-rol</h3>
+                <p class="text-on-surface-variant text-sm leading-relaxed">Nivele de acces distincte pentru administratori, șoferi și auditori pentru securitate maximă.</p>
+                <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full transition-transform group-hover:scale-125"></div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         HOW IT WORKS
+    ═══════════════════════════════════════════ -->
+    <section id="how-it-works" class="py-24 bg-surface-container-lowest">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+            <div class="text-center mb-16 reveal">
+                <p class="text-xs font-bold uppercase tracking-widest text-primary mb-4">Proces</p>
+                <h2 class="text-3xl font-extrabold font-headline">Simplu în 3 pași</h2>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-12 relative">
+                <!-- Connector line (desktop) -->
+                <div class="hidden md:block absolute top-12 left-[16%] right-[16%] h-px bg-gradient-to-r from-transparent via-outline-variant/40 to-transparent"></div>
+
+                <div class="flex-1 text-center relative reveal">
+                    <div class="w-24 h-24 mx-auto bg-surface-container border-4 border-background rounded-full flex items-center justify-center mb-6 shadow-[0_10px_30px_rgba(4,14,32,0.5)]">
+                        <span class="material-symbols-outlined text-primary text-3xl">app_registration</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">1. Configurare &amp; Adăugare</h3>
+                    <p class="text-on-surface-variant text-sm leading-relaxed max-w-xs mx-auto">Setează contul instituției și adaugă vehiculele în platformă.</p>
+                </div>
+
+                <div class="flex-1 text-center relative reveal reveal-delay-2">
+                    <div class="w-24 h-24 mx-auto bg-surface-container border-4 border-background rounded-full flex items-center justify-center mb-6 shadow-[0_10px_30px_rgba(4,14,32,0.5)]">
+                        <span class="material-symbols-outlined text-primary text-3xl">edit_note</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">2. Înregistrare Date</h3>
+                    <p class="text-on-surface-variant text-sm leading-relaxed max-w-xs mx-auto">Șoferii introduc simplu și rapid datele curselor și alimentărilor.</p>
+                </div>
+
+                <div class="flex-1 text-center relative reveal reveal-delay-4">
+                    <div class="w-24 h-24 mx-auto bg-surface-container border-4 border-background rounded-full flex items-center justify-center mb-6 shadow-[0_10px_30px_rgba(4,14,32,0.5)]">
+                        <span class="material-symbols-outlined text-primary text-3xl">file_download</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">3. Rapoarte 1-Click</h3>
+                    <p class="text-on-surface-variant text-sm leading-relaxed max-w-xs mx-auto">Generează rapoarte oficiale gata pentru semnare și auditare.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         REPORTS SHOWCASE
+    ═══════════════════════════════════════════ -->
+    <section id="reports" class="py-32 px-6 md:px-8 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+            <!-- Image -->
+            <div class="order-2 lg:order-1 relative reveal">
+                <div class="absolute -inset-4 bg-gradient-to-br from-surface-container-high/60 to-transparent rounded-3xl blur-xl -z-10"></div>
+                <img
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1gS1NCLMiKycpWZoEEpIlSvZDvl78Dqs8kQWXjYT2f3m3fPKz4PGYLmh4fDJYoz0Ueg79Jytx_uqmIVUU4MOSmGHlxTO8XR3IPFsk3AAisxBAiW0duyRhvWzZt1hji-sOOPGjHmBBc5OKI9nza-IASnShH6mPgpDkPnv-7W2CT1ACeWFG7CbBLBcl-hKzqL1dTLwyOI5NirK8aqL5wBKGNGNwfJOWzZjWcVMRO-WakwGL-7_L7mIH2ew-FFzTPf6grka1lajsj_Q"
+                    alt="Rapoarte oficiale PDF generate de RAD"
+                    class="img-card rounded-3xl shadow-[0_20px_40px_rgba(4,14,32,0.5)] border border-outline-variant/20 w-full object-cover h-[560px]"
+                />
+            </div>
+
+            <!-- Content -->
+            <div class="order-1 lg:order-2 space-y-8 reveal reveal-delay-1">
+                <p class="text-xs font-bold uppercase tracking-widest text-primary">Rapoarte</p>
+                <h2 class="text-4xl font-extrabold font-headline leading-tight">Toate documentele pregătite pentru control și audit.</h2>
+
+                <div class="space-y-4">
+                    <div class="bg-surface-container-low p-5 rounded-2xl flex items-start gap-4 hover:bg-surface-container transition-colors">
+                        <span class="material-symbols-outlined text-primary mt-0.5 flex-shrink-0">directions</span>
+                        <div>
+                            <h4 class="font-bold text-base mb-1">Deplasări &amp; Alimentări</h4>
+                            <p class="text-sm text-on-surface-variant">Jurnale zilnice și lunare detaliate.</p>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-low p-5 rounded-2xl flex items-start gap-4 hover:bg-surface-container transition-colors">
+                        <span class="material-symbols-outlined text-primary mt-0.5 flex-shrink-0">water_drop</span>
+                        <div>
+                            <h4 class="font-bold text-base mb-1">Consum Carburant</h4>
+                            <p class="text-sm text-on-surface-variant">Fișe de evidență și rapoarte de eficiență.</p>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-low p-5 rounded-2xl flex items-start gap-4 hover:bg-surface-container transition-colors">
+                        <span class="material-symbols-outlined text-primary mt-0.5 flex-shrink-0">account_balance_wallet</span>
+                        <div>
+                            <h4 class="font-bold text-base mb-1">Cheltuieli</h4>
+                            <p class="text-sm text-on-surface-variant">Centralizatorul costurilor pe vehicul sau flotă.</p>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-low p-5 rounded-2xl flex items-start gap-4 hover:bg-surface-container transition-colors">
+                        <span class="material-symbols-outlined text-primary mt-0.5 flex-shrink-0">inventory_2</span>
+                        <div>
+                            <h4 class="font-bold text-base mb-1">Evidență Vehicule</h4>
+                            <p class="text-sm text-on-surface-variant">Fișa tehnică și starea curentă a fiecărei unități.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         TESTIMONIALS
+    ═══════════════════════════════════════════ -->
+    <section id="testimonials" class="py-24 bg-surface-container-lowest">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+            <div class="text-center mb-16 reveal">
+                <p class="text-xs font-bold uppercase tracking-widest text-primary mb-4">Testimoniale</p>
+                <h2 class="text-3xl font-extrabold font-headline">Încrederea Instituțiilor</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+
+                <div class="reveal bg-surface-container p-8 rounded-2xl relative">
+                    <span class="material-symbols-outlined text-outline-variant/25 text-7xl absolute top-4 right-4 select-none">format_quote</span>
+                    <p class="text-on-surface-variant italic mb-6 relative z-10 leading-relaxed">
+                        "Digitalizarea flotei cu RAD a redus timpul petrecut pe hârtii cu 80%. Rapoartele sunt impecabile și gata pentru orice audit."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">M.I.</div>
+                        <div>
+                            <div class="font-bold text-sm">Marius Ionescu</div>
+                            <div class="text-xs text-on-surface-variant uppercase tracking-wider">Director Administrativ, Primăria M.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal reveal-delay-2 bg-surface-container p-8 rounded-2xl relative">
+                    <span class="material-symbols-outlined text-outline-variant/25 text-7xl absolute top-4 right-4 select-none">format_quote</span>
+                    <p class="text-on-surface-variant italic mb-6 relative z-10 leading-relaxed">
+                        "Sistemul multi-rol ne ajută să păstrăm securitatea datelor. Este exact ce aveam nevoie pentru o gestiune modernă."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">E.P.</div>
+                        <div>
+                            <div class="font-bold text-sm">Elena Popa</div>
+                            <div class="text-xs text-on-surface-variant uppercase tracking-wider">Șef Serviciu Auto, Consiliul Județean C.</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         FAQ
+    ═══════════════════════════════════════════ -->
+    <section id="faq" class="py-32 px-6 md:px-8 max-w-3xl mx-auto">
+        <div class="text-center mb-12 reveal">
+            <p class="text-xs font-bold uppercase tracking-widest text-primary mb-4">FAQ</p>
+            <h2 class="text-3xl font-extrabold font-headline">Întrebări Frecvente</h2>
+        </div>
+
+        <div class="space-y-4">
+
+            <details class="reveal bg-surface-container rounded-2xl group" open>
+                <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-6 text-base">
+                    Este platforma potrivită pentru instituții publice?
+                    <span class="material-symbols-outlined chevron text-primary flex-shrink-0">keyboard_arrow_down</span>
+                </summary>
+                <div class="px-6 pb-6 text-on-surface-variant text-sm leading-relaxed">
+                    Da, RAD a fost creat special ținând cont de rigoarea și nevoile de raportare ale instituțiilor publice din România.
+                </div>
+            </details>
+
+            <details class="reveal reveal-delay-1 bg-surface-container rounded-2xl group">
+                <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-6 text-base">
+                    Cât de sigure sunt datele noastre?
+                    <span class="material-symbols-outlined chevron text-primary flex-shrink-0">keyboard_arrow_down</span>
+                </summary>
+                <div class="px-6 pb-6 text-on-surface-variant text-sm leading-relaxed">
+                    Utilizăm criptare de nivel instituțional (AES-256) și găzduire sigură. Sistemul multi-rol asigură că utilizatorii văd doar informațiile la care au acces.
+                </div>
+            </details>
+
+            <details class="reveal reveal-delay-2 bg-surface-container rounded-2xl group">
+                <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-6 text-base">
+                    Rapoartele sunt acceptate la audit?
+                    <span class="material-symbols-outlined chevron text-primary flex-shrink-0">keyboard_arrow_down</span>
+                </summary>
+                <div class="px-6 pb-6 text-on-surface-variant text-sm leading-relaxed">
+                    Toate documentele PDF generate sunt formatate conform cerințelor legale actuale pentru evidența mijloacelor de transport.
+                </div>
+            </details>
+
+            <details class="reveal reveal-delay-3 bg-surface-container rounded-2xl group">
+                <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-6 text-base">
+                    Câte vehicule poate gestiona platforma?
+                    <span class="material-symbols-outlined chevron text-primary flex-shrink-0">keyboard_arrow_down</span>
+                </summary>
+                <div class="px-6 pb-6 text-on-surface-variant text-sm leading-relaxed">
+                    Nu există o limită fixă. Platforma este dimensionată pentru a gestiona atât flote mici (5-10 vehicule) cât și flote mari ale consiliilor județene (50+ vehicule).
+                </div>
+            </details>
+
+            <details class="reveal reveal-delay-4 bg-surface-container rounded-2xl group">
+                <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-6 text-base">
+                    Este necesară o instruire specială pentru utilizare?
+                    <span class="material-symbols-outlined chevron text-primary flex-shrink-0">keyboard_arrow_down</span>
+                </summary>
+                <div class="px-6 pb-6 text-on-surface-variant text-sm leading-relaxed">
+                    Interfața a fost proiectată pentru a fi intuitivă. Oferim sesiuni de onboarding și documentație completă. Majoritatea utilizatorilor sunt operaționali în prima zi.
+                </div>
+            </details>
+
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         FINAL CTA / CONTACT
+    ═══════════════════════════════════════════ -->
+    <section id="contact" class="py-32 px-6 md:px-8 bg-[#091426] relative overflow-hidden">
+        <div class="glow-blob absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(75,65,225,0.18)_0%,transparent_70%)]"></div>
+        <div class="glow-blob absolute -bottom-32 -right-32 w-[500px] h-[500px] bg-primary-container/10 rounded-full blur-[120px]"></div>
+
+        <div class="max-w-5xl mx-auto relative z-10">
+
+            <!-- Header -->
+            <div class="text-center mb-16 reveal">
+                <p class="text-xs font-bold uppercase tracking-widest text-primary mb-4">Contact</p>
+                <h2 class="text-5xl font-extrabold font-headline mb-6 text-on-surface" style="letter-spacing:-0.03em;">
+                    Digitalizează-ți flota astăzi.
+                </h2>
+                <p class="text-xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+                    Completează formularul și te contactăm în cel mai scurt timp pentru o demonstrație personalizată.
+                </p>
+            </div>
+
+            <!-- Form card -->
+            <div class="reveal reveal-delay-1 bg-surface-container rounded-3xl p-8 md:p-12 shadow-[0_20px_60px_rgba(4,14,32,0.5)] border border-outline-variant/10 max-w-3xl mx-auto">
+                <form id="contact-form" novalidate>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                        <!-- Nume -->
+                        <div class="flex flex-col gap-2">
+                            <label for="contact-name" class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Nume și prenume</label>
+                            <input
+                                id="contact-name" name="name" type="text"
+                                autocomplete="name" required
+                                class="bg-surface-container-high rounded-xl px-4 py-3.5 text-on-surface text-sm outline-none border border-transparent focus:border-primary-container/60 transition-colors"
+                            />
+                        </div>
+
+                        <!-- Instituție -->
+                        <div class="flex flex-col gap-2">
+                            <label for="contact-institution" class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Instituție</label>
+                            <input
+                                id="contact-institution" name="institution" type="text"
+                                autocomplete="organization" required
+                                class="bg-surface-container-high rounded-xl px-4 py-3.5 text-on-surface text-sm outline-none border border-transparent focus:border-primary-container/60 transition-colors"
+                            />
+                        </div>
+
+                        <!-- Email -->
+                        <div class="flex flex-col gap-2">
+                            <label for="contact-email" class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Email</label>
+                            <input
+                                id="contact-email" name="email" type="email"
+                                autocomplete="email" required
+                                class="bg-surface-container-high rounded-xl px-4 py-3.5 text-on-surface text-sm outline-none border border-transparent focus:border-primary-container/60 transition-colors"
+                            />
+                        </div>
+
+                        <!-- Telefon -->
+                        <div class="flex flex-col gap-2">
+                            <label for="contact-phone" class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Telefon</label>
+                            <input
+                                id="contact-phone" name="phone" type="tel"
+                                autocomplete="tel" required
+                                class="bg-surface-container-high rounded-xl px-4 py-3.5 text-on-surface text-sm outline-none border border-transparent focus:border-primary-container/60 transition-colors"
+                            />
+                        </div>
+
+                        <!-- Nr. vehicule -->
+                        <div class="flex flex-col gap-2 md:col-span-2">
+                            <label for="contact-vehicles" class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Număr vehicule în flotă</label>
+                            <div class="relative">
+                                <select
+                                    id="contact-vehicles" name="vehicles" required
+                                    class="w-full bg-surface-container-high rounded-xl px-4 py-3.5 text-on-surface text-sm outline-none border border-transparent focus:border-primary-container/60 transition-colors appearance-none cursor-pointer"
+                                >
+                                    <option value="" disabled selected>Selectează intervalul</option>
+                                    <option value="1-10">1 – 10 vehicule</option>
+                                    <option value="11-30">11 – 30 vehicule</option>
+                                    <option value="31-50">31 – 50 vehicule</option>
+                                    <option value="50+">Peste 50 vehicule</option>
+                                </select>
+                                <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-base">expand_more</span>
+                            </div>
+                        </div>
+
+                        <!-- Mesaj -->
+                        <div class="flex flex-col gap-2 md:col-span-2">
+                            <label for="contact-message" class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Mesaj</label>
+                            <textarea
+                                id="contact-message" name="message" rows="4" required
+                                placeholder="Spune-ne mai multe despre nevoile instituției tale..."
+                                class="bg-surface-container-high rounded-xl px-4 py-3.5 text-on-surface placeholder-outline text-sm outline-none border border-transparent focus:border-primary-container/60 transition-colors resize-none"
+                            ></textarea>
+                        </div>
+
+                    </div>
+
+                    <!-- Submit row -->
+                    <div class="mt-8">
+                        <button
+                            type="submit"
+                            class="btn-gradient text-white py-4 px-10 rounded-2xl text-base font-bold shadow-[0_10px_30px_rgba(75,65,225,0.4)] w-full sm:w-auto"
+                        >
+                            Trimite solicitarea
+                        </button>
+                    </div>
+
+                    <!-- Feedback message -->
+                    <div id="form-feedback" class="hidden mt-6 p-4 rounded-xl text-sm font-medium"></div>
+
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         FOOTER
+    ═══════════════════════════════════════════ -->
+    <footer class="py-12 bg-surface-container-low border-t border-outline-variant/10">
+        <div class="max-w-7xl mx-auto px-6 md:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex flex-col items-center md:items-start">
+                <div class="text-lg font-black text-primary mb-1">RAD</div>
+                <div class="text-xs uppercase tracking-widest text-on-surface-variant">© 2026 — Registrul Auto Digital</div>
+            </div>
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="#" class="text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors opacity-70 hover:opacity-100">Politică de confidențialitate</a>
+                <a href="#" class="text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors opacity-70 hover:opacity-100">Termeni și condiții</a>
+                <a href="#contact" class="text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors opacity-70 hover:opacity-100">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

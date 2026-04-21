@@ -1,0 +1,192 @@
+/* =============================================
+   RAD – Registrul Auto Digital  |  style.css
+   ============================================= */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Manrope', sans-serif;
+    overflow-x: hidden;
+}
+
+/* ── Scrollbar ──────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #081325; }
+::-webkit-scrollbar-thumb { background: #464555; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #4b41e1; }
+
+/* ── Glass panel ────────────────────────────── */
+.glass-panel {
+    background: rgba(43, 53, 72, 0.6);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+}
+
+/* ── Gradient button ────────────────────────── */
+.btn-gradient {
+    background: linear-gradient(135deg, #4b41e1, #645efb);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.btn-gradient:hover {
+    box-shadow: 0 0 22px 6px rgba(195, 192, 255, 0.35);
+    transform: translateY(-2px);
+}
+.btn-gradient:active { transform: translateY(0); }
+
+/* ── Navbar scrolled state ──────────────────── */
+#navbar {
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+#navbar.scrolled {
+    background: rgba(8, 19, 37, 0.92) !important;
+    box-shadow: 0 2px 32px rgba(4, 14, 32, 0.6);
+}
+
+/* ── Nav links ──────────────────────────────── */
+.nav-link {
+    position: relative;
+    transition: color 0.2s ease;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #4b41e1;
+    transition: width 0.25s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after { width: 100%; }
+.nav-link.active { color: #4b41e1; }
+
+/* ── Mobile menu ────────────────────────────── */
+#mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: rgba(8, 19, 37, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+}
+#mobile-menu.open { display: flex; }
+#mobile-menu a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #c7c4d8;
+    transition: color 0.2s ease;
+}
+#mobile-menu a:hover { color: #c3c0ff; }
+
+/* ── Scroll reveal ──────────────────────────── */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.32s ease, transform 0.32s ease;
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.05s; }
+.reveal-delay-2 { transition-delay: 0.1s; }
+.reveal-delay-3 { transition-delay: 0.15s; }
+.reveal-delay-4 { transition-delay: 0.2s; }
+.reveal-delay-5 { transition-delay: 0.25s; }
+
+/* ── Feature cards ──────────────────────────── */
+.feature-card {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.feature-card:hover { transform: translateY(-6px); }
+
+/* ── FAQ accordion ──────────────────────────── */
+details summary::-webkit-details-marker { display: none; }
+details .chevron { transition: transform 0.3s ease; }
+details[open] .chevron { transform: rotate(180deg); }
+details > div {
+    animation: slideDown 0.3s ease;
+}
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Step connector line ────────────────────── */
+.step-line {
+    position: absolute;
+    top: 3rem;
+    left: 58%;
+    right: -58%;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(70,69,85,0.5) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+/* ── Stat items ─────────────────────────────── */
+.stat-item {
+    transition: transform 0.3s ease;
+}
+.stat-item:hover { transform: translateY(-3px); }
+
+/* ── Hero badge ─────────────────────────────── */
+.hero-badge {
+    background: rgba(21, 32, 50, 0.8);
+    border: 1px solid rgba(70, 69, 85, 0.4);
+}
+
+/* ── Ambient glow blobs ─────────────────────── */
+.glow-blob {
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ── Contact form ───────────────────────────── */
+#contact-form input,
+#contact-form select,
+#contact-form textarea {
+    color: #d8e2fc;
+}
+#contact-form input::placeholder,
+#contact-form textarea::placeholder {
+    color: #918fa1;
+}
+#contact-form input:focus,
+#contact-form select:focus,
+#contact-form textarea:focus {
+    background-color: #202a3d;
+}
+#contact-form select option {
+    background-color: #152032;
+    color: #d8e2fc;
+}
+
+#form-feedback.success {
+    display: block;
+    background: rgba(75, 65, 225, 0.12);
+    border: 1px solid rgba(75, 65, 225, 0.3);
+    color: #c3c0ff;
+}
+#form-feedback.error {
+    display: block;
+    background: rgba(147, 0, 10, 0.15);
+    border: 1px solid rgba(255, 180, 171, 0.3);
+    color: #ffb4ab;
+}
+
+/* ── Image card effect ──────────────────────── */
+.img-card {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.img-card:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 28px 56px rgba(4, 14, 32, 0.7);
+}
