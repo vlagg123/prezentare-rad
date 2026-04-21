@@ -25,24 +25,45 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', onScroll, { passive: true });
 
 
-    // ── Active nav link on scroll ──────────────
-    const sections   = document.querySelectorAll('section[id]');
-    const navLinks   = document.querySelectorAll('.nav-link');
+// ── Active nav link on scroll (deterministic) ──────────
+const sections = Array.from(document.querySelectorAll('section[id]'));
+const navLinks = Array.from(document.querySelectorAll('.nav-link'));
 
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
-                navLinks.forEach(link => {
-                    const matches = link.getAttribute('href') === `#${id}`;
-                    link.classList.toggle('active', matches);
-                });
-            }
-        });
-    }, { threshold: 0.35 });
+const setActiveLink = (id) => {
+    navLinks.forEach(link => {
+        const matches = link.getAttribute('href') === `#${id}`;
+        link.classList.toggle('active', matches);
+    });
+};
 
-    sections.forEach(s => sectionObserver.observe(s));
+// Alege secțiunea care trece printr-un “probe line” imediat sub navbar
+const getActiveSectionId = () => {
+    const navbarH = navbar?.offsetHeight ?? 0;
+    const probeY = navbarH + 24; // 24px sub navbar
 
+    for (const s of sections) {
+        const rect = s.getBoundingClientRect();
+        if (rect.top <= probeY && rect.bottom > probeY) {
+            return s.id;
+        }
+    }
+
+    return sections[0]?.id;
+};
+
+let ticking = false;
+const onActiveScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+        const id = getActiveSectionId();
+        if (id) setActiveLink(id);
+        ticking = false;
+    });
+};
+
+window.addEventListener('scroll', onActiveScroll, { passive: true });
+onActiveScroll(); // setare inițială
 
     // ── Smooth scroll for anchor links ────────
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -54,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             closeMobileMenu();
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            setActiveLink(target.id);
         });
     });
 
