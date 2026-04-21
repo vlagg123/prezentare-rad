@@ -119,9 +119,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (url.searchParams.get('sent') === '1' && feedback) {
             feedback.className = 'mt-6 p-4 rounded-xl text-sm font-medium success';
-            feedback.textContent = '✓ Solicitarea ta a fost trimisă! Te contactăm în maxim 24 de ore.';
-            const contactSection = document.getElementById('contact');
-            contactSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            feedback.textContent = '✓ Solicitarea ta a fost trimisă! Te vom contacta în cel mai scurt timp posibil.';
+            // Scroll so the success message is visible (not hidden above the fold)
+            requestAnimationFrame(() => {
+                feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
 
             // Remove the flag so refresh doesn't keep showing the message
             url.searchParams.delete('sent');
